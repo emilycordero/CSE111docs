@@ -5,22 +5,27 @@ sentences.py
 Prove that you can write functions with parameters and call those functions multiple times with arguments.
 '''
 import random
-quantity = 0
-tense = ''
+quantities = [1,2]
+tenses = ["present", "past", "future"]
+quantity = random.choice(quantities)
+tense = random.choice(tenses)
 determiner = ''
 noun = ''
 verb = ''
-counter = 0
 
 words = ["boy", "girl", "cat", "dog", "bird", "house"]
 
-def main(args):
-    while counter == 6:
+def main():
+    counter = 0
+    while counter < 6:
+        counter += 1 
         make_sentence(quantity, tense)
-    return
+        print()
+    print(f"{determiner} {noun} {verb}")
+    print()
+    
 
 def make_sentence(quantity, tense):
-    counter =+ 1
     """Build and return a sentence with three words:
     a determiner, a noun, and a verb. The grammatical
     quantity of the determiner and noun will match the
@@ -28,28 +33,13 @@ def make_sentence(quantity, tense):
     quantity and tense of the verb will match the number
     and tense in the quantity and tense parameters.
     """
+    quantity = random.choice(quantities)
+    tense = random.choice(tenses)
     get_determiner(quantity)
     get_noun(quantity)
     get_verb(quantity,tense)
-    print(f'{determiner} {noun} {verb}.')
-
-
 
 def get_determiner(quantity):
-    """Return a randomly chosen determiner. A determiner is
-    a word like "the", "a", "one", "some", "many".
-    If quantity is 1, this function will return either "a",
-    "one", or "the". Otherwise this function will return
-    either "some", "many", or "the".
-
-    Parameter
-        quantity: an integer.
-            If quantity is 1, this function will return a
-            determiner for a single noun. Otherwise this
-            function will return a determiner for a plural
-            noun.
-    Return: a randomly chosen determiner.
-    """
     if quantity == 1:
         words = ["a", "one", "the"]
     else:
@@ -57,6 +47,7 @@ def get_determiner(quantity):
 
     # Randomly choose and return a determiner.
     determiner = random.choice(words)
+    print(determiner.capitalize(), end =' ')
     return determiner
 
 def get_noun(quantity):
@@ -82,6 +73,7 @@ def get_noun(quantity):
     
     #randomly choose a noun and return it
     noun = random.choice(words)
+    print(noun, end = ' ')
     return noun
 
 def get_verb(quantity, tense):
@@ -113,7 +105,7 @@ def get_verb(quantity, tense):
     if tense == 'past' and quantity != 1:
         words = ["drank", "ate", "grew", "laughed", "thought", "ran", "slept", "talked", "walked", "wrote"]
     elif tense == 'present' and quantity == 1:
-        "drinks", "eats", "grows", "laughs", "thinks", "runs", "sleeps", "talks", "walks", "writes"
+        words = ["drinks", "eats", "grows", "laughs", "thinks", "runs", "sleeps", "talks", "walks", "writes"]
     elif tense == 'present':
         words = ["drink", "eat", "grow", "laugh", "think",
         "run", "sleep", "talk", "walk", "write"]
@@ -123,5 +115,6 @@ def get_verb(quantity, tense):
         "will walk", "will write"]
     
     verb = random.choice(words)
+    print(verb, end = '.')
     return verb
 main()
