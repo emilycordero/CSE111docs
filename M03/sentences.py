@@ -5,36 +5,35 @@ sentences.py
 Prove that you can write functions with parameters and call those functions multiple times with arguments.
 '''
 import random
-quantity = [1,2]
-tense = ["past", "present", "future"]
+quantity = 0
+tense = ''
 determiner = ''
 noun = ''
 verb = ''
-prepositional_phrase = ''
-index = 0
+counter = 0
 
 words = ["boy", "girl", "cat", "dog", "bird", "house"]
 
-def main():
-    make_sentence(quantity[0], tense[0])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    make_sentence(quantity[0], tense[1])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    make_sentence(quantity[0], tense[2])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    make_sentence(quantity[1], tense[0])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    make_sentence(quantity[1], tense[1])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    make_sentence(quantity[1], tense[2])
-    print(f"{determiner} {noun} {verb} {prepositional_phrase}.")
-    print()
+def main(args):
+    while counter == 6:
+        make_sentence(quantity, tense)
+    return
+
 def make_sentence(quantity, tense):
+    counter =+ 1
+    """Build and return a sentence with three words:
+    a determiner, a noun, and a verb. The grammatical
+    quantity of the determiner and noun will match the
+    number in the quantity parameter. The grammatical
+    quantity and tense of the verb will match the number
+    and tense in the quantity and tense parameters.
+    """
     get_determiner(quantity)
     get_noun(quantity)
     get_verb(quantity,tense)
-    get_prepositional_phrase(quantity)
-    get_prepositional_phrase(quantity)
+    print(f'{determiner} {noun} {verb}.')
+
+
 
 def get_determiner(quantity):
     if quantity == 1:
@@ -44,7 +43,6 @@ def get_determiner(quantity):
 
     # Randomly choose and return a determiner.
     determiner = random.choice(words)
-    print(determiner, end=' ')
     return determiner
 
 def get_noun(quantity):
@@ -72,7 +70,6 @@ def get_verb(quantity, tense):
         "will walk", "will write"]
     
     verb = random.choice(words)
-    print(verb, end = ' ')
     return verb
 
 def get_preposition():
